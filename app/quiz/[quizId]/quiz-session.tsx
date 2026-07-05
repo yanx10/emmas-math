@@ -9,6 +9,7 @@ import { getDifficultyLabel, getDifficultyColor } from '@/lib/scoring'
 import { cn } from '@/lib/utils'
 import { CheckCircle, XCircle, Clock, Trophy, RotateCcw } from 'lucide-react'
 import Link from 'next/link'
+import { Confetti } from '@/components/ui/confetti'
 import type { Quiz, Question } from '@/types'
 
 type Phase = 'intro' | 'taking' | 'results'
@@ -35,6 +36,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [results, setResults] = useState<QuizAttempt[]>([])
   const [submitting, setSubmitting] = useState(false)
+  const [showConfetti, setShowConfetti] = useState(false)
 
   const currentQuestion = questions[index]
   const choices: string[] = Array.isArray(currentQuestion?.choices)
@@ -74,6 +76,10 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
     setResults(quizResults)
     setPhase('results')
     setSubmitting(false)
+    if (score >= 80) {
+      setShowConfetti(true)
+      setTimeout(() => setShowConfetti(false), 4000)
+    }
   }
 
   function handleRetake() {
@@ -120,11 +126,14 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
     )
 
     return (
+      <>
+      <Confetti active={showConfetti} />
       <div className="max-w-2xl mx-auto space-y-6">
-        <Card className="text-center py-8">
-          <p className={cn('text-5xl font-bold mb-2', scoreColor)}>{score}%</p>
+        <Card className="text-center py-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-100">
+          <p className="text-5xl mb-2">{score >= 80 ? '🏆' : score >= 60 ? '🌟' : '💪'}</p>
+          <p className={cn('text-5xl font-black mb-2', scoreColor)}>{score}%</p>
           <p className="text-stone-500 mb-1">{correct} of {results.length} correct</p>
-          <p className="font-semibold text-stone-800 text-lg mt-3">{scoreMsg}</p>
+          <p className="font-black text-stone-800 text-xl mt-3">{scoreMsg}</p>
           {wrongTopics.length > 0 && (
             <p className="text-sm text-stone-500 mt-2">Review: {wrongTopics.join(', ')}</p>
           )}
@@ -165,13 +174,14 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
             <RotateCcw className="h-4 w-4" /> Retake Quiz
           </Button>
           <Link href="/review">
-            <Button variant="outline" className="gap-2">Review Mistakes</Button>
+            <Button variant="outline" className="gap-2">Review Mistakes 📖</Button>
           </Link>
           <Link href="/quiz">
             <Button variant="ghost">← All Quizzes</Button>
           </Link>
         </div>
       </div>
+      </>
     )
   }
 
