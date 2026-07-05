@@ -73,29 +73,29 @@ export default async function HomePage() {
       </div>
 
       {/* Today's Mission */}
-      <div className="rounded-2xl bg-gradient-to-br from-violet-600 to-violet-700 p-6 text-white shadow-lg">
+      <div className="rounded-2xl bg-gradient-to-br from-pink-600 to-pink-700 p-6 text-white shadow-lg">
         <div className="flex items-start justify-between">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-violet-200">Week {currentWeekNum}</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-pink-200">Week {currentWeekNum}</span>
             <h2 className="mt-1 text-2xl font-bold">{currentWeekInfo.title}</h2>
-            <p className="mt-1 text-violet-200 text-sm">This week&apos;s focus topic</p>
+            <p className="mt-1 text-pink-200 text-sm">This week&apos;s focus topic</p>
           </div>
-          <Target className="h-10 w-10 text-violet-300 flex-shrink-0" />
+          <Target className="h-10 w-10 text-pink-300 flex-shrink-0" />
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link href={`/lesson/${currentWeekInfo.lesson}`}>
-            <button className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-50 transition-colors">
+            <button className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-pink-700 hover:bg-pink-50 transition-colors">
               <BookOpen className="h-4 w-4" /> Open Lesson
             </button>
           </Link>
           <Link href={`/practice/${currentWeekInfo.slug}`}>
-            <button className="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-400 transition-colors">
+            <button className="inline-flex items-center gap-2 rounded-xl bg-pink-500 px-4 py-2 text-sm font-semibold text-white hover:bg-pink-400 transition-colors">
               <PenLine className="h-4 w-4" /> Start Practice
             </button>
           </Link>
           {quizForCurrentWeek && (
             <Link href={`/quiz/${quizForCurrentWeek.id}`}>
-              <button className="inline-flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-400 transition-colors">
+              <button className="inline-flex items-center gap-2 rounded-xl bg-pink-500 px-4 py-2 text-sm font-semibold text-white hover:bg-pink-400 transition-colors">
                 <Trophy className="h-4 w-4" /> Take Quiz
               </button>
             </Link>
@@ -114,7 +114,7 @@ export default async function HomePage() {
           <p className="text-xs text-stone-400 mt-0.5">days of practice</p>
         </Card>
         <Card>
-          <div className="flex items-center gap-2 text-violet-500 mb-1">
+          <div className="flex items-center gap-2 text-pink-500 mb-1">
             <PenLine className="h-5 w-5" />
             <span className="text-xs font-medium text-stone-500 uppercase tracking-wide">Answered</span>
           </div>
@@ -149,7 +149,7 @@ export default async function HomePage() {
             return (
               <Card key={week}>
                 <div className="flex items-start justify-between mb-3">
-                  <span className="text-xs font-semibold text-violet-600 bg-violet-50 px-2 py-0.5 rounded-full">Week {week}</span>
+                  <span className="text-xs font-semibold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">Week {week}</span>
                   <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusColors[status]}`}>
                     {statusLabels[status]}
                   </span>

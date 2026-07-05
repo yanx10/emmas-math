@@ -64,7 +64,7 @@ export default async function AdminQuestionsPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3">
-                            <Link href={`/admin/questions/${q.id}`} className="text-violet-600 hover:underline text-xs font-medium">
+                            <Link href={`/admin/questions/${q.id}`} className="text-pink-600 hover:underline text-xs font-medium">
                               Edit →
                             </Link>
                           </td>

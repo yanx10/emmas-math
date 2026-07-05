@@ -32,7 +32,7 @@ export default async function QuizListPage() {
           return (
             <Card key={quiz.id}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-full">
                   Week {quiz.week_number}
                 </span>
                 {p?.quiz_completed && (

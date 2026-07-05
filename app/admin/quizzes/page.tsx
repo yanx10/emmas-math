@@ -42,7 +42,7 @@ export default async function AdminQuizzesPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <Link href={`/quiz/${quiz.id}`} className="text-violet-600 hover:underline text-xs">
+                    <Link href={`/quiz/${quiz.id}`} className="text-pink-600 hover:underline text-xs">
                       Preview →
                     </Link>
                   </td>

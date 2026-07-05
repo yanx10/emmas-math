@@ -208,8 +208,8 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
                 className={cn(
                   'w-full text-left rounded-xl border px-4 py-3 text-sm font-medium transition-all',
                   currentAnswer === choice
-                    ? 'border-violet-400 bg-violet-50 text-violet-800'
-                    : 'border-stone-200 bg-white text-stone-700 hover:border-violet-200 hover:bg-violet-50/50'
+                    ? 'border-pink-400 bg-pink-50 text-pink-800'
+                    : 'border-stone-200 bg-white text-stone-700 hover:border-pink-200 hover:bg-pink-50/50'
                 )}
               >
                 {choice}
@@ -222,7 +222,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
             value={currentAnswer}
             onChange={(e) => handleSelectAnswer(e.target.value)}
             placeholder="Type your answer..."
-            className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm mb-6 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
+            className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm mb-6 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent"
           />
         )}
 
@@ -254,7 +254,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
             className={cn(
               'h-6 w-6 rounded-full text-xs font-medium transition-all',
               i === index
-                ? 'bg-violet-600 text-white'
+                ? 'bg-pink-600 text-white'
                 : answers[q.id]
                 ? 'bg-emerald-100 text-emerald-700'
                 : 'bg-stone-100 text-stone-400'

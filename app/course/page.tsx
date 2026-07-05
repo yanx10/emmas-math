@@ -63,7 +63,7 @@ export default async function CoursePage() {
                 {/* Left: info */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-bold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-full">
+                    <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-full">
                       Week {week}
                     </span>
                     <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${statusColors[status]}`}>
@@ -103,13 +103,13 @@ export default async function CoursePage() {
                 <div className="flex flex-row gap-2 sm:flex-col sm:w-36">
                   <Link href={`/lesson/${lessonSlug}`} className="flex-1 sm:flex-none">
                     <button className="w-full flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 transition-colors">
-                      <BookOpen className="h-4 w-4 text-violet-500" />
+                      <BookOpen className="h-4 w-4 text-pink-500" />
                       Lesson
                     </button>
                   </Link>
                   <Link href={`/practice/${topicSlug}`} className="flex-1 sm:flex-none">
                     <button className="w-full flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 transition-colors">
-                      <PenLine className="h-4 w-4 text-violet-500" />
+                      <PenLine className="h-4 w-4 text-pink-500" />
                       Practice
                     </button>
                   </Link>

@@ -13,7 +13,7 @@ export function ProgressBar({ value, className, barClassName, showLabel }: Progr
     <div className={cn('relative', className)}>
       <div className="h-2 w-full rounded-full bg-stone-100 overflow-hidden">
         <div
-          className={cn('h-full rounded-full transition-all duration-500', barClassName ?? 'bg-violet-500')}
+          className={cn('h-full rounded-full transition-all duration-500', barClassName ?? 'bg-pink-500')}
           style={{ width: `${clamped}%` }}
         />
       </div>

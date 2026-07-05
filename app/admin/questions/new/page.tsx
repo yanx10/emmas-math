@@ -19,7 +19,7 @@ export default async function NewQuestionPage() {
       <form action={addQuestion} className="space-y-5 bg-white border border-stone-100 rounded-2xl p-6 shadow-sm">
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Topic</label>
-          <select name="topic_id" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <select name="topic_id" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400">
             <option value="">— Select topic —</option>
             {(topics ?? []).map((t) => (
               <option key={t.id} value={t.id}>{t.title}</option>
@@ -29,18 +29,18 @@ export default async function NewQuestionPage() {
 
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Week Number</label>
-          <input type="number" name="week_number" min="1" max="3" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400" />
+          <input type="number" name="week_number" min="1" max="3" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Question Text *</label>
-          <textarea name="question_text" required rows={3} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400" />
+          <textarea name="question_text" required rows={3} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-stone-700 mb-1">Question Type *</label>
-            <select name="question_type" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            <select name="question_type" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400">
               <option value="multiple_choice">Multiple Choice</option>
               <option value="numeric">Numeric</option>
               <option value="text">Text</option>
@@ -48,7 +48,7 @@ export default async function NewQuestionPage() {
           </div>
           <div>
             <label className="block text-sm font-medium text-stone-700 mb-1">Difficulty *</label>
-            <select name="difficulty" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400">
+            <select name="difficulty" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400">
               <option value="easy">Easy</option>
               <option value="standard">Standard</option>
               <option value="word_problem">Word Problem</option>
@@ -61,17 +61,17 @@ export default async function NewQuestionPage() {
           <label className="block text-sm font-medium text-stone-700 mb-1">
             Answer Choices <span className="text-stone-400 font-normal">(one per line, for multiple choice)</span>
           </label>
-          <textarea name="choices" rows={4} placeholder="Option A&#10;Option B&#10;Option C&#10;Option D" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 font-mono" />
+          <textarea name="choices" rows={4} placeholder="Option A&#10;Option B&#10;Option C&#10;Option D" className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 font-mono" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Correct Answer *</label>
-          <input type="text" name="correct_answer" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400" />
+          <input type="text" name="correct_answer" required className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Explanation</label>
-          <textarea name="explanation" rows={3} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400" />
+          <textarea name="explanation" rows={3} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
         </div>
 
         <div className="flex items-center gap-2">

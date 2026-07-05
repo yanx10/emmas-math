@@ -35,7 +35,7 @@ export default async function AdminLessonsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <Link href={`/lesson/${lesson.slug}`} className="text-violet-600 hover:underline text-xs">
+                    <Link href={`/lesson/${lesson.slug}`} className="text-pink-600 hover:underline text-xs">
                       View →
                     </Link>
                   </td>

@@ -58,8 +58,8 @@ export default async function ProgressPage() {
       <PageHeader title="Progress" subtitle="Emma's learning journey" />
 
       {/* Parent summary banner */}
-      <div className="mb-8 rounded-2xl bg-gradient-to-br from-violet-50 to-sky-50 border border-violet-100 p-6">
-        <h2 className="text-sm font-semibold text-violet-600 uppercase tracking-wide mb-3">📊 Parent Summary</h2>
+      <div className="mb-8 rounded-2xl bg-gradient-to-br from-pink-50 to-sky-50 border border-pink-100 p-6">
+        <h2 className="text-sm font-semibold text-pink-600 uppercase tracking-wide mb-3">📊 Parent Summary</h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div>
             <p className="text-3xl font-bold text-stone-900">{totalAnswered}</p>
@@ -85,7 +85,7 @@ export default async function ProgressPage() {
 
         {/* Quiz scores */}
         {quizScores.length > 0 && (
-          <div className="mt-5 pt-5 border-t border-violet-100">
+          <div className="mt-5 pt-5 border-t border-pink-100">
             <p className="text-sm font-semibold text-stone-700 mb-3 flex items-center gap-2">
               <Trophy className="h-4 w-4 text-amber-500" /> Quiz Scores
             </p>
@@ -120,7 +120,7 @@ export default async function ProgressPage() {
 
         {/* Needs attention */}
         {mostMissed.length > 0 && (
-          <div className="mt-5 pt-5 border-t border-violet-100">
+          <div className="mt-5 pt-5 border-t border-pink-100">
             <p className="text-sm font-semibold text-stone-700 mb-3 flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-amber-500" /> Needs Attention
             </p>
@@ -142,7 +142,7 @@ export default async function ProgressPage() {
         {/* By Topic */}
         <div>
           <h2 className="text-lg font-semibold text-stone-800 mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-violet-500" /> By Topic
+            <TrendingUp className="h-5 w-5 text-pink-500" /> By Topic
           </h2>
           {topicStats.length === 0 ? (
             <Card>
@@ -176,14 +176,14 @@ export default async function ProgressPage() {
         {/* Weekly Progress */}
         <div>
           <h2 className="text-lg font-semibold text-stone-800 mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-violet-500" /> Weekly Progress
+            <BookOpen className="h-5 w-5 text-pink-500" /> Weekly Progress
           </h2>
           <div className="space-y-3">
             {progress.map((p) => (
               <Card key={p.week_number}>
                 <div className="flex items-center justify-between mb-2">
                   <div>
-                    <span className="text-xs font-bold text-violet-600">Week {p.week_number}</span>
+                    <span className="text-xs font-bold text-pink-600">Week {p.week_number}</span>
                     <p className="font-medium text-stone-800">{WEEK_TITLES[p.week_number] ?? `Week ${p.week_number}`}</p>
                   </div>
                   {p.quiz_score != null && (

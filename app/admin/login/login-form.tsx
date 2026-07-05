@@ -38,7 +38,7 @@ export function AdminLoginForm() {
         value={pin}
         onChange={(e) => setPin(e.target.value)}
         placeholder="Enter PIN"
-        className="w-full rounded-xl border border-stone-200 px-4 py-3 text-center text-2xl tracking-widest focus:outline-none focus:ring-2 focus:ring-violet-400"
+        className="w-full rounded-xl border border-stone-200 px-4 py-3 text-center text-2xl tracking-widest focus:outline-none focus:ring-2 focus:ring-pink-400"
         autoFocus
         maxLength={8}
       />

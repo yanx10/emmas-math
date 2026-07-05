@@ -18,10 +18,10 @@ export function TopNav() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-stone-100 bg-white/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 w-full border-b border-pink-100 bg-white/90 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex h-14 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-bold text-violet-700 text-lg">
+          <Link href="/" className="flex items-center gap-2 font-bold text-pink-700 text-lg">
             <span className="text-2xl">📐</span>
             <span className="hidden sm:block">Emma&apos;s Math</span>
           </Link>
@@ -35,7 +35,7 @@ export function TopNav() {
                   className={cn(
                     'flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-xs font-medium transition-colors sm:px-3 sm:text-sm',
                     active
-                      ? 'bg-violet-50 text-violet-700'
+                      ? 'bg-pink-50 text-pink-700'
                       : 'text-stone-500 hover:bg-stone-50 hover:text-stone-900'
                   )}
                 >

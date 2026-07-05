@@ -31,7 +31,7 @@ export function getDifficultyColor(difficulty: string): string {
   return {
     easy: 'text-emerald-600 bg-emerald-50',
     standard: 'text-sky-600 bg-sky-50',
-    word_problem: 'text-violet-600 bg-violet-50',
+    word_problem: 'text-pink-600 bg-pink-50',
     challenge: 'text-rose-600 bg-rose-50',
   }[difficulty] ?? 'text-gray-600 bg-gray-50'
 }

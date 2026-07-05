@@ -33,7 +33,7 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonS
     return (
       <div className="text-center py-20">
         <p className="text-stone-500 text-lg">Lesson not found.</p>
-        <Link href="/course" className="mt-4 inline-block text-violet-600 hover:underline">Back to Course</Link>
+        <Link href="/course" className="mt-4 inline-block text-pink-600 hover:underline">Back to Course</Link>
       </div>
     )
   }
@@ -52,8 +52,8 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonS
 
       {/* Summary card */}
       {lesson.summary && (
-        <Card className="mb-6 bg-violet-50 border-violet-100">
-          <p className="text-violet-900 font-medium">{lesson.summary}</p>
+        <Card className="mb-6 bg-pink-50 border-pink-100">
+          <p className="text-pink-900 font-medium">{lesson.summary}</p>
         </Card>
       )}
 
@@ -71,8 +71,8 @@ export default async function LessonPage({ params }: { params: Promise<{ lessonS
           <h2 className="text-lg font-bold text-stone-800 mb-4">Worked Examples</h2>
           <div className="space-y-4">
             {(lesson.examples as Example[]).map((ex, i) => (
-              <Card key={i} className="border-l-4 border-violet-400">
-                <p className="text-xs font-semibold text-violet-500 uppercase tracking-wide mb-2">Example {i + 1}</p>
+              <Card key={i} className="border-l-4 border-pink-400">
+                <p className="text-xs font-semibold text-pink-500 uppercase tracking-wide mb-2">Example {i + 1}</p>
                 <p className="font-medium text-stone-900 mb-2">📝 {ex.problem}</p>
                 <p className="text-emerald-700 font-semibold mb-1">✓ Answer: {ex.solution}</p>
                 {ex.explanation && (

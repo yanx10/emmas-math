@@ -160,8 +160,8 @@ export function PracticeSession({ questions, weekNumber }: Props) {
                     className={cn(
                       'w-full text-left rounded-xl border px-4 py-3 text-sm font-medium transition-all',
                       answer === choice
-                        ? 'border-violet-400 bg-violet-50 text-violet-800'
-                        : 'border-stone-200 bg-white text-stone-700 hover:border-violet-200 hover:bg-violet-50/50'
+                        ? 'border-pink-400 bg-pink-50 text-pink-800'
+                        : 'border-stone-200 bg-white text-stone-700 hover:border-pink-200 hover:bg-pink-50/50'
                     )}
                   >
                     {choice}
@@ -175,7 +175,7 @@ export function PracticeSession({ questions, weekNumber }: Props) {
                 onChange={(e) => setAnswer(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !submitted && handleSubmit()}
                 placeholder="Type your answer..."
-                className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm mb-6 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent"
+                className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm mb-6 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent"
               />
             )}
 

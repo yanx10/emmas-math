@@ -27,10 +27,10 @@ export default async function AdminPage() {
       <div className="grid gap-4 sm:grid-cols-3 mb-8">
         {items.map(({ href, label, icon: Icon, count, desc }) => (
           <Link key={href} href={href}>
-            <Card className="hover:shadow-md hover:border-violet-100 transition-all cursor-pointer">
+            <Card className="hover:shadow-md hover:border-pink-100 transition-all cursor-pointer">
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-violet-50 rounded-xl">
-                  <Icon className="h-6 w-6 text-violet-600" />
+                <div className="p-2 bg-pink-50 rounded-xl">
+                  <Icon className="h-6 w-6 text-pink-600" />
                 </div>
                 <div>
                   <p className="font-semibold text-stone-900">{label}</p>
@@ -45,7 +45,7 @@ export default async function AdminPage() {
 
       <Card>
         <div className="flex items-center gap-2 mb-2">
-          <BarChart2 className="h-5 w-5 text-violet-500" />
+          <BarChart2 className="h-5 w-5 text-pink-500" />
           <h2 className="font-semibold text-stone-900">Total Attempts</h2>
         </div>
         <p className="text-4xl font-bold text-stone-900">{aCount ?? 0}</p>
