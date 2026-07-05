@@ -12,7 +12,6 @@ const navItems = [
   { href: '/quiz', label: 'Quiz', icon: Trophy },
   { href: '/review', label: 'Review', icon: RotateCcw },
   { href: '/progress', label: 'Progress', icon: BarChart2 },
-  { href: '/admin', label: 'Admin', icon: Settings },
 ]
 
 export function TopNav() {

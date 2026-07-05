@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/layout/page-header'
 import { Card } from '@/components/ui/card'
-import { PenLine, BookOpen, Trophy, BarChart2 } from 'lucide-react'
+import { PenLine, BookOpen, Trophy, BarChart2, LogOut } from 'lucide-react'
 
 export default async function AdminPage() {
   const supabase = await createClient()
@@ -51,6 +51,14 @@ export default async function AdminPage() {
         <p className="text-4xl font-bold text-stone-900">{aCount ?? 0}</p>
         <p className="text-sm text-stone-400 mt-1">answer submissions recorded</p>
       </Card>
+
+      <div className="mt-8">
+        <form action="/api/admin/logout" method="POST">
+          <button type="submit" className="flex items-center gap-2 text-sm text-stone-400 hover:text-rose-600 transition-colors">
+            <LogOut className="h-4 w-4" /> Sign out of admin
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

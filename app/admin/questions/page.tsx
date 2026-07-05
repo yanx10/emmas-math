@@ -42,6 +42,7 @@ export default async function AdminQuestionsPage() {
                       <th className="text-left px-4 py-3">Type</th>
                       <th className="text-left px-4 py-3">Question</th>
                       <th className="text-left px-4 py-3">Active</th>
+                      <th className="text-left px-4 py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-stone-50">
@@ -61,6 +62,11 @@ export default async function AdminQuestionsPage() {
                             <span className={cn('text-xs font-medium px-2 py-0.5 rounded-full', q.is_active ? 'bg-emerald-50 text-emerald-700' : 'bg-stone-100 text-stone-400')}>
                               {q.is_active ? 'Yes' : 'No'}
                             </span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <Link href={`/admin/questions/${q.id}`} className="text-violet-600 hover:underline text-xs font-medium">
+                              Edit →
+                            </Link>
                           </td>
                         </tr>
                       )
