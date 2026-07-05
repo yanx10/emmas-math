@@ -8,9 +8,9 @@ import { buildTopicStats } from '@/lib/scoring'
 import type { Attempt } from '@/types'
 
 const WEEK_META = [
-  { week: 1, title: 'Decimal Place Value', slug: 'decimal-place-value', lesson: 'decimal-place-value-lesson', emoji: '🔢', gradient: 'from-pink-400 to-rose-400' },
-  { week: 2, title: 'Decimal Operations', slug: 'decimal-operations', lesson: 'decimal-operations-lesson', emoji: '➕', gradient: 'from-purple-400 to-pink-400' },
-  { week: 3, title: 'Fractions Review', slug: 'fractions-review', lesson: 'fractions-review-lesson', emoji: '🍕', gradient: 'from-sky-400 to-purple-400' },
+  { week: 1, title: 'Decimal Place Value', slug: 'decimal-place-value', lesson: 'decimal-place-value-lesson', emoji: '🌸', gradient: 'from-pink-400 to-rose-400' },
+  { week: 2, title: 'Decimal Operations', slug: 'decimal-operations', lesson: 'decimal-operations-lesson', emoji: '🌺', gradient: 'from-purple-400 to-pink-400' },
+  { week: 3, title: 'Fractions Review', slug: 'fractions-review', lesson: 'fractions-review-lesson', emoji: '🌷', gradient: 'from-sky-400 to-purple-400' },
 ]
 
 const statusConfig: Record<string, { label: string; color: string }> = {
@@ -61,7 +61,7 @@ export default async function HomePage() {
         <div>
           <p className="text-pink-500 font-bold text-sm uppercase tracking-widest mb-1">Welcome back!</p>
           <h1 className="text-4xl font-black text-stone-900">Hi Emma! 👋</h1>
-          <p className="mt-1 text-stone-500 text-lg">Ready for today&apos;s math mission?</p>
+          <p className="mt-1 text-stone-500 text-lg">Ready for today&apos;s math mission? 🌷</p>
         </div>
         {streak > 0 && (
           <div className="text-center bg-gradient-to-br from-amber-400 to-orange-400 text-white rounded-2xl px-4 py-3 shadow-lg">
@@ -104,10 +104,10 @@ export default async function HomePage() {
       {/* Stats row */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {[
-          { label: 'Questions Done', value: totalAnswered, emoji: '✏️', color: 'from-pink-50 to-rose-50 border-pink-100' },
-          { label: 'Accuracy', value: `${accuracy}%`, emoji: '🎯', color: 'from-purple-50 to-pink-50 border-purple-100' },
-          { label: 'Days Practiced', value: streak, emoji: '📅', color: 'from-sky-50 to-blue-50 border-sky-100' },
-          { label: 'Topics Tried', value: topicStats.length, emoji: '📚', color: 'from-amber-50 to-orange-50 border-amber-100' },
+          { label: 'Questions Done', value: totalAnswered, emoji: '🍓', color: 'from-pink-50 to-rose-50 border-pink-100' },
+          { label: 'Accuracy', value: `${accuracy}%`, emoji: '✨', color: 'from-purple-50 to-pink-50 border-purple-100' },
+          { label: 'Days Practiced', value: streak, emoji: '🌸', color: 'from-sky-50 to-blue-50 border-sky-100' },
+          { label: 'Topics Tried', value: topicStats.length, emoji: '🎀', color: 'from-amber-50 to-orange-50 border-amber-100' },
         ].map(({ label, value, emoji, color }) => (
           <div key={label} className={`rounded-2xl bg-gradient-to-br ${color} border p-4`}>
             <p className="text-2xl mb-1">{emoji}</p>
@@ -119,7 +119,7 @@ export default async function HomePage() {
 
       {/* Week cards */}
       <div>
-        <h2 className="text-xl font-black text-stone-800 mb-4">Your Weeks 📅</h2>
+        <h2 className="text-xl font-black text-stone-800 mb-4">Your Weeks 🌺</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           {weekProgress.map(({ week, title, slug, lesson, emoji, gradient, progress: p, quiz }) => {
             const status = p?.status ?? 'not_started'

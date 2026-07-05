@@ -119,7 +119,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
     const correct = results.filter((r) => r.isCorrect).length
     const score = Math.round((correct / results.length) * 100)
     const scoreColor = score >= 80 ? 'text-emerald-600' : score >= 60 ? 'text-amber-600' : 'text-rose-600'
-    const scoreMsg = score >= 80 ? 'Excellent work! 🎉' : score >= 60 ? 'Nice job! Keep practicing. 👍' : 'Keep going — you\'ll get it! 📚'
+    const scoreMsg = score >= 80 ? 'Excellent work, Emma! ✨🍓' : score >= 60 ? 'Nice job! Keep going, you got this! 🌺' : "Keep practicing — you're getting there! 🌷"
 
     const wrongTopics = Array.from(
       new Set(results.filter((r) => !r.isCorrect).map((r) => (r.question.topic as { title?: string } | null)?.title).filter(Boolean))
@@ -130,7 +130,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
       <Confetti active={showConfetti} />
       <div className="max-w-2xl mx-auto space-y-6">
         <Card className="text-center py-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-100">
-          <p className="text-5xl mb-2">{score >= 80 ? '🏆' : score >= 60 ? '🌟' : '💪'}</p>
+          <p className="text-5xl mb-2">{score >= 80 ? '🎀' : score >= 60 ? '🌸' : '🌷'}</p>
           <p className={cn('text-5xl font-black mb-2', scoreColor)}>{score}%</p>
           <p className="text-stone-500 mb-1">{correct} of {results.length} correct</p>
           <p className="font-black text-stone-800 text-xl mt-3">{scoreMsg}</p>

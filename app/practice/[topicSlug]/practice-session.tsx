@@ -13,20 +13,20 @@ import Link from 'next/link'
 import type { Question } from '@/types'
 
 const CORRECT_MESSAGES = [
-  { emoji: '🎉', text: "BOOM! That's correct!" },
-  { emoji: '⭐', text: 'Amazing work, Emma!' },
-  { emoji: '🔥', text: "You're on fire!" },
-  { emoji: '💪', text: 'Nailed it! So proud!' },
-  { emoji: '✨', text: 'Brilliant! Keep going!' },
-  { emoji: '🌟', text: 'You got it! Star move!' },
-  { emoji: '🎊', text: 'Perfect! You rock!' },
+  { emoji: '🍓', text: "BOOM! That's correct!" },
+  { emoji: '✨', text: 'Amazing work, Emma!' },
+  { emoji: '🌸', text: "You're crushing it!" },
+  { emoji: '🎀', text: 'Nailed it! So proud of you!' },
+  { emoji: '🌺', text: 'Brilliant! Keep going!' },
+  { emoji: '🌷', text: 'You got it! Superstar!' },
+  { emoji: '✨', text: 'Perfect! You rock, Emma!' },
 ]
 
 const WRONG_MESSAGES = [
-  { emoji: '💡', text: "Almost! Check the hint below." },
-  { emoji: '🤔', text: "Not quite — but you're learning!" },
-  { emoji: '💪', text: "Good try! Read the explanation." },
-  { emoji: '📚', text: "That's tricky! You'll get it next time." },
+  { emoji: '🌸', text: "Almost! Check the hint below." },
+  { emoji: '🍓', text: "Not quite — but you're learning!" },
+  { emoji: '🌷', text: "Good try! Read the explanation." },
+  { emoji: '🎀', text: "That's tricky! You'll get it next time." },
 ]
 
 interface Props {
@@ -98,7 +98,7 @@ export function PracticeSession({ questions, weekNumber }: Props) {
       <>
         <Confetti active={great} />
         <Card className="max-w-xl mx-auto text-center py-10 px-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-100">
-          <div className="text-6xl mb-4">{accuracy >= 80 ? '🏆' : accuracy >= 60 ? '🌟' : '📚'}</div>
+          <div className="text-6xl mb-4">{accuracy >= 80 ? '🎀' : accuracy >= 60 ? '🌸' : '🌷'}</div>
           <h2 className="text-3xl font-black text-stone-900 mb-1">
             {accuracy >= 80 ? 'Mission Complete!' : accuracy >= 60 ? 'Great effort!' : 'Keep practicing!'}
           </h2>
@@ -143,7 +143,7 @@ export function PracticeSession({ questions, weekNumber }: Props) {
         <div className="mb-6">
           <div className="flex justify-between text-sm text-stone-500 mb-2">
             <span className="font-semibold">Question {index + 1} of {questions.length}</span>
-            <span>{results.filter((r) => r.correct).length} ⭐ correct</span>
+            <span>{results.filter((r) => r.correct).length} 🍓 correct</span>
           </div>
           <ProgressBar value={progressPct} barClassName="bg-gradient-to-r from-pink-400 to-purple-400" />
         </div>

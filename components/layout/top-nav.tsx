@@ -22,7 +22,7 @@ export function TopNav() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex h-14 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-black text-pink-600 text-lg">
-            <span className="text-2xl">✨</span>
+            <span className="text-2xl">🍓</span>
             <span className="hidden sm:block bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">Emma&apos;s Math</span>
           </Link>
           <nav className="flex items-center gap-0.5 sm:gap-1">
