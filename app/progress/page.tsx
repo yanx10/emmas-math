@@ -285,15 +285,33 @@ export default async function ProgressPage() {
               {recent.map((a) => {
                 const q = a.question as Question | undefined
                 return (
-                  <div key={a.id} className="flex items-center gap-3 py-3">
-                    {a.is_correct
-                      ? <CheckCircle className="h-4 w-4 text-emerald-500 flex-shrink-0" />
-                      : <XCircle className="h-4 w-4 text-rose-400 flex-shrink-0" />
-                    }
-                    <p className="text-sm text-stone-700 flex-1 truncate">{q?.question_text ?? 'Question'}</p>
-                    <div className="flex-shrink-0 text-right">
-                      <p className="text-xs text-stone-400">{(q?.topic as Topic | undefined)?.title ?? ''}</p>
-                      <p className="text-xs text-stone-300">{formatDateTime(a.created_at)}</p>
+                  <div key={a.id} className="py-3 space-y-1">
+                    <div className="flex items-start gap-3">
+                      {a.is_correct
+                        ? <CheckCircle className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        : <XCircle className="h-4 w-4 text-rose-400 flex-shrink-0 mt-0.5" />
+                      }
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-stone-700 truncate">{q?.question_text ?? 'Question'}</p>
+                        <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-1">
+                          <p className="text-xs">
+                            <span className="text-stone-400">Emma: </span>
+                            <span className={cn('font-semibold', a.is_correct ? 'text-emerald-600' : 'text-rose-500 line-through')}>
+                              {a.user_answer || '(no answer)'}
+                            </span>
+                          </p>
+                          {!a.is_correct && q?.correct_answer && (
+                            <p className="text-xs">
+                              <span className="text-stone-400">Correct: </span>
+                              <span className="font-semibold text-emerald-600">{q.correct_answer}</span>
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex-shrink-0 text-right">
+                        <p className="text-xs text-stone-400">{(q?.topic as Topic | undefined)?.title ?? ''}</p>
+                        <p className="text-xs text-stone-300">{formatDateTime(a.created_at)}</p>
+                      </div>
                     </div>
                   </div>
                 )
