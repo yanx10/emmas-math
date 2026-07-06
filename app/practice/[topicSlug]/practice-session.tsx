@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { saveAttempt, markPracticeCompleted } from '@/app/actions'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -8,9 +8,11 @@ import { ProgressBar } from '@/components/ui/progress-bar'
 import { Confetti } from '@/components/ui/confetti'
 import { getDifficultyLabel, getDifficultyColor } from '@/lib/scoring'
 import { cn } from '@/lib/utils'
-import { CheckCircle, XCircle, RotateCcw } from 'lucide-react'
+import { CheckCircle, XCircle, RotateCcw, Clock } from 'lucide-react'
 import Link from 'next/link'
 import type { Question } from '@/types'
+
+const GOAL_SECONDS = 45 * 60
 
 const CORRECT_MESSAGES = [
   { emoji: '🍓', text: "BOOM! That's correct!" },
@@ -29,12 +31,20 @@ const WRONG_MESSAGES = [
   { emoji: '🎀', text: "That's tricky! You'll get it next time." },
 ]
 
+interface OtherTopic {
+  slug: string
+  title: string
+  emoji: string
+}
+
 interface Props {
   questions: Question[]
   weekNumber: number
+  todaySecondsStart: number
+  otherTopics: OtherTopic[]
 }
 
-export function PracticeSession({ questions, weekNumber }: Props) {
+export function PracticeSession({ questions, weekNumber, todaySecondsStart, otherTopics }: Props) {
   const [index, setIndex] = useState(0)
   const [answer, setAnswer] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -44,6 +54,8 @@ export function PracticeSession({ questions, weekNumber }: Props) {
   const [saving, setSaving] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
   const [feedbackMsg, setFeedbackMsg] = useState(CORRECT_MESSAGES[0])
+  const [sessionSeconds, setSessionSeconds] = useState(0)
+  const questionStartRef = useRef<number>(Date.now())
 
   const question = questions[index]
   const choices: string[] = Array.isArray(question?.choices) ? question.choices as string[] : []
@@ -51,6 +63,9 @@ export function PracticeSession({ questions, weekNumber }: Props) {
   async function handleSubmit() {
     if (!answer.trim() || saving) return
     setSaving(true)
+
+    const elapsed = Math.round((Date.now() - questionStartRef.current) / 1000)
+    setSessionSeconds((s) => s + elapsed)
 
     const correct = answer.trim().toLowerCase() === question.correct_answer.trim().toLowerCase()
     setIsCorrect(correct)
@@ -64,12 +79,13 @@ export function PracticeSession({ questions, weekNumber }: Props) {
       setTimeout(() => setShowConfetti(false), 3000)
     }
 
-    await saveAttempt(question.id, null, answer, correct, 'practice')
+    await saveAttempt(question.id, null, answer, correct, 'practice', elapsed)
     setResults((prev) => [...prev, { correct }])
     setSaving(false)
   }
 
   function handleNext() {
+    questionStartRef.current = Date.now()
     if (index + 1 >= questions.length) {
       markPracticeCompleted(weekNumber)
       setDone(true)
@@ -87,48 +103,107 @@ export function PracticeSession({ questions, weekNumber }: Props) {
     setIsCorrect(false)
     setResults([])
     setDone(false)
+    setSessionSeconds(0)
+    questionStartRef.current = Date.now()
   }
 
   if (done) {
     const correct = results.filter((r) => r.correct).length
     const accuracy = Math.round((correct / results.length) * 100)
-    const great = accuracy >= 80
+    const totalTodaySeconds = todaySecondsStart + sessionSeconds
+    const goalMet = totalTodaySeconds >= GOAL_SECONDS
+    const todayMinutes = Math.floor(totalTodaySeconds / 60)
+    const remainingMinutes = Math.max(0, Math.ceil((GOAL_SECONDS - totalTodaySeconds) / 60))
+    const goalPct = Math.min(100, Math.round((totalTodaySeconds / GOAL_SECONDS) * 100))
 
     return (
       <>
-        <Confetti active={great} />
-        <Card className="max-w-xl mx-auto text-center py-10 px-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-100">
-          <div className="text-6xl mb-4">{accuracy >= 80 ? '🎀' : accuracy >= 60 ? '🌸' : '🌷'}</div>
-          <h2 className="text-3xl font-black text-stone-900 mb-1">
-            {accuracy >= 80 ? 'Mission Complete!' : accuracy >= 60 ? 'Great effort!' : 'Keep practicing!'}
-          </h2>
-          <p className="text-stone-500 mb-6">You answered {questions.length} questions</p>
-          <div className="flex justify-center gap-8 mb-6">
-            <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
-              <p className="text-3xl font-black text-emerald-500">{correct}</p>
-              <p className="text-sm text-stone-400">Correct ✓</p>
+        <Confetti active={accuracy >= 80} />
+        <div className="max-w-xl mx-auto space-y-4">
+          <Card className="text-center py-10 px-8 bg-gradient-to-br from-pink-50 to-purple-50 border-pink-100">
+            <div className="text-6xl mb-4">{accuracy >= 80 ? '🎀' : accuracy >= 60 ? '🌸' : '🌷'}</div>
+            <h2 className="text-3xl font-black text-stone-900 mb-1">
+              {accuracy >= 80 ? 'Mission Complete!' : accuracy >= 60 ? 'Great effort!' : 'Keep practicing!'}
+            </h2>
+            <p className="text-stone-500 mb-6">You answered {questions.length} questions</p>
+            <div className="flex justify-center gap-8 mb-6">
+              <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
+                <p className="text-3xl font-black text-emerald-500">{correct}</p>
+                <p className="text-sm text-stone-400">Correct ✓</p>
+              </div>
+              <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
+                <p className="text-3xl font-black text-pink-500">{accuracy}%</p>
+                <p className="text-sm text-stone-400">Score</p>
+              </div>
+              <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
+                <p className="text-3xl font-black text-rose-400">{results.length - correct}</p>
+                <p className="text-sm text-stone-400">To review</p>
+              </div>
             </div>
-            <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
-              <p className="text-3xl font-black text-pink-500">{accuracy}%</p>
-              <p className="text-sm text-stone-400">Score</p>
+          </Card>
+
+          {/* Daily goal tracker */}
+          <Card className="border-pink-100">
+            <div className="flex items-center gap-2 mb-3">
+              <Clock className="h-4 w-4 text-pink-500" />
+              <h3 className="font-black text-stone-800">Today&apos;s Goal</h3>
+              <span className={cn('ml-auto text-sm font-bold', goalMet ? 'text-emerald-600' : 'text-amber-600')}>
+                {todayMinutes} / 45 min
+              </span>
             </div>
-            <div className="bg-white rounded-2xl px-5 py-3 shadow-sm">
-              <p className="text-3xl font-black text-rose-400">{results.length - correct}</p>
-              <p className="text-sm text-stone-400">To review</p>
-            </div>
-          </div>
+            <ProgressBar
+              value={goalPct}
+              barClassName={goalMet ? 'bg-emerald-400' : 'bg-gradient-to-r from-pink-400 to-purple-400'}
+              className="mb-3"
+            />
+            {goalMet ? (
+              <p className="text-sm font-bold text-emerald-700 text-center">🎉 You hit your 45-minute goal today! Amazing work, Emma!</p>
+            ) : (
+              <p className="text-sm text-stone-500 text-center">
+                Just <strong className="text-pink-600">{remainingMinutes} more minutes</strong> to hit your goal — keep going! 🍓
+              </p>
+            )}
+          </Card>
+
+          {/* Suggest more practice if goal not met */}
+          {!goalMet && otherTopics.length > 0 && (
+            <Card className="border-amber-100 bg-amber-50/50">
+              <p className="text-sm font-bold text-amber-800 mb-3">
+                {accuracy < 60
+                  ? '💪 Practice makes perfect — try this topic again or explore another!'
+                  : '🚀 You\'re on a roll! Keep the momentum going:'}
+              </p>
+              <div className="flex flex-col gap-2">
+                {accuracy < 70 && (
+                  <Button variant="secondary" onClick={handleRestart} className="gap-2 justify-start">
+                    <RotateCcw className="h-4 w-4" /> Practice this topic again
+                  </Button>
+                )}
+                {otherTopics.map((t) => (
+                  <Link key={t.slug} href={`/practice/${t.slug}`}>
+                    <Button variant="outline" className="w-full justify-start gap-2">
+                      <span>{t.emoji}</span> Practice {t.title}
+                    </Button>
+                  </Link>
+                ))}
+              </div>
+            </Card>
+          )}
+
           <div className="flex flex-col gap-3">
             <Link href="/review">
               <Button variant="secondary" className="w-full">Review Mistakes 📖</Button>
             </Link>
-            <Button variant="ghost" onClick={handleRestart} className="w-full gap-2">
-              <RotateCcw className="h-4 w-4" /> Try Again
-            </Button>
+            {accuracy >= 70 && (
+              <Button variant="ghost" onClick={handleRestart} className="w-full gap-2">
+                <RotateCcw className="h-4 w-4" /> Try Again
+              </Button>
+            )}
             <Link href="/practice">
               <Button variant="ghost" className="w-full">← Back to Topics</Button>
             </Link>
           </div>
-        </Card>
+        </div>
       </>
     )
   }
@@ -227,7 +302,7 @@ export function PracticeSession({ questions, weekNumber }: Props) {
 
               {question.explanation && (
                 <div className="bg-amber-50 rounded-2xl p-4 mb-4 border border-amber-100">
-                  <p className="font-bold text-amber-800 mb-1">💡 Here's why:</p>
+                  <p className="font-bold text-amber-800 mb-1">💡 Here&apos;s why:</p>
                   <p className="text-sm text-amber-700">{question.explanation}</p>
                 </div>
               )}

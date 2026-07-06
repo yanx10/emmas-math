@@ -25,6 +25,7 @@ export async function saveAttempt(
     .select()
     .single()
   if (error) throw error
+  revalidatePath('/')
   revalidatePath('/progress')
   revalidatePath('/review')
   return data

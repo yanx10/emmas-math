@@ -3,9 +3,13 @@ import { createClient } from '@/lib/supabase/server'
 import { Card } from '@/components/ui/card'
 import { ProgressBar } from '@/components/ui/progress-bar'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Circle, BookOpen, PenLine, Trophy } from 'lucide-react'
+import { CheckCircle, Circle, BookOpen, PenLine, Trophy, Clock } from 'lucide-react'
 import { buildTopicStats } from '@/lib/scoring'
+import { getTodayTimeSpentSeconds } from '@/lib/data'
+import { cn } from '@/lib/utils'
 import type { Attempt } from '@/types'
+
+const GOAL_SECONDS = 45 * 60
 
 const WEEK_META = [
   { week: 1, title: 'Decimal Place Value', slug: 'decimal-place-value', lesson: 'decimal-place-value-lesson', emoji: '🌸', gradient: 'from-pink-400 to-rose-400' },
@@ -23,10 +27,11 @@ const statusConfig: Record<string, { label: string; color: string }> = {
 export default async function HomePage() {
   const supabase = await createClient()
 
-  const [{ data: progressRows }, { data: attemptsRaw }, { data: quizzesRaw }] = await Promise.all([
+  const [{ data: progressRows }, { data: attemptsRaw }, { data: quizzesRaw }, todaySeconds] = await Promise.all([
     supabase.from('weekly_progress').select('*').order('week_number'),
     supabase.from('attempts').select('*, question:questions(*, topic:topics(*))').order('created_at', { ascending: false }).limit(200),
     supabase.from('quizzes').select('id, week_number').order('week_number'),
+    getTodayTimeSpentSeconds(),
   ])
 
   const progress = progressRows ?? []
@@ -70,6 +75,37 @@ export default async function HomePage() {
           </div>
         )}
       </div>
+
+      {/* Daily goal tracker */}
+      {(() => {
+        const todayMinutes = Math.floor(todaySeconds / 60)
+        const goalPct = Math.min(100, Math.round((todaySeconds / GOAL_SECONDS) * 100))
+        const goalMet = todaySeconds >= GOAL_SECONDS
+        const remaining = Math.max(0, Math.ceil((GOAL_SECONDS - todaySeconds) / 60))
+        return (
+          <Card className={cn('border-pink-100', goalMet && 'border-emerald-200 bg-emerald-50/50')}>
+            <div className="flex items-center gap-2 mb-2">
+              <Clock className="h-4 w-4 text-pink-500" />
+              <span className="font-black text-stone-800 text-sm">Daily Goal</span>
+              <span className={cn('ml-auto text-sm font-bold', goalMet ? 'text-emerald-600' : 'text-stone-500')}>
+                {todayMinutes} / 45 min
+              </span>
+            </div>
+            <ProgressBar
+              value={goalPct}
+              barClassName={goalMet ? 'bg-emerald-400' : 'bg-gradient-to-r from-pink-400 to-purple-400'}
+              className="mb-2"
+            />
+            <p className="text-xs text-stone-500">
+              {goalMet
+                ? '🎉 Goal complete! You crushed it today, Emma!'
+                : todayMinutes === 0
+                ? "You haven't practiced yet today — let's go! 🍓"
+                : `${remaining} more minutes to hit your goal today! 💪`}
+            </p>
+          </Card>
+        )
+      })()}
 
       {/* Today's Mission */}
       <div className={`rounded-3xl bg-gradient-to-br ${currentWeekInfo.gradient} p-6 text-white shadow-xl`}>

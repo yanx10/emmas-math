@@ -118,3 +118,14 @@ export async function getAllQuestions(): Promise<Question[]> {
     .order('week_number')
   return (data ?? []) as Question[]
 }
+
+export async function getTodayTimeSpentSeconds(): Promise<number> {
+  const supabase = await createClient()
+  const todayStart = new Date()
+  todayStart.setHours(0, 0, 0, 0)
+  const { data } = await supabase
+    .from('attempts')
+    .select('time_spent_seconds')
+    .gte('created_at', todayStart.toISOString())
+  return (data ?? []).reduce((sum, a) => sum + (a.time_spent_seconds ?? 0), 0)
+}
