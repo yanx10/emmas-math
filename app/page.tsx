@@ -15,6 +15,13 @@ const WEEK_META = [
   { week: 1, title: 'Decimal Place Value', slug: 'decimal-place-value', lesson: 'decimal-place-value-lesson', emoji: '🌸', gradient: 'from-pink-400 to-rose-400' },
   { week: 2, title: 'Decimal Operations', slug: 'decimal-operations', lesson: 'decimal-operations-lesson', emoji: '🌺', gradient: 'from-purple-400 to-pink-400' },
   { week: 3, title: 'Fractions Review', slug: 'fractions-review', lesson: 'fractions-review-lesson', emoji: '🌷', gradient: 'from-sky-400 to-purple-400' },
+  { week: 4, title: 'Ratios & Rates', slug: 'ratios-and-rates', lesson: 'ratios-and-rates-lesson', emoji: '🌻', gradient: 'from-green-400 to-teal-400' },
+  { week: 5, title: 'Percentages', slug: 'percentages', lesson: 'percentages-lesson', emoji: '💫', gradient: 'from-teal-400 to-cyan-400' },
+  { week: 6, title: 'Integers & Negative Numbers', slug: 'integers', lesson: 'integers-lesson', emoji: '❄️', gradient: 'from-blue-400 to-indigo-400' },
+  { week: 7, title: 'Expressions & Equations', slug: 'expressions-and-equations', lesson: 'expressions-equations-lesson', emoji: '🔢', gradient: 'from-indigo-400 to-violet-400' },
+  { week: 8, title: 'Geometry: Area & Volume', slug: 'geometry-area-volume', lesson: 'geometry-area-volume-lesson', emoji: '📐', gradient: 'from-violet-400 to-fuchsia-400' },
+  { week: 9, title: 'Statistics', slug: 'statistics', lesson: 'statistics-lesson', emoji: '📊', gradient: 'from-fuchsia-400 to-rose-400' },
+  { week: 10, title: 'Coordinate Plane', slug: 'coordinate-plane', lesson: 'coordinate-plane-lesson', emoji: '🗺️', gradient: 'from-rose-400 to-orange-400' },
 ]
 
 const statusConfig: Record<string, { label: string; color: string }> = {
