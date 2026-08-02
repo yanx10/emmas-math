@@ -36,13 +36,19 @@ export async function getQuestionsByWeek(weekNumber: number): Promise<Question[]
 
 export async function getQuestionsByTopic(topicSlug: string): Promise<Question[]> {
   const supabase = await createClient()
+  const { data: topic } = await supabase
+    .from('topics')
+    .select('id')
+    .eq('slug', topicSlug)
+    .single()
+  if (!topic) return []
   const { data } = await supabase
     .from('questions')
     .select('*, topic:topics(*)')
+    .eq('topic_id', topic.id)
     .eq('is_active', true)
     .order('difficulty')
-  const all = (data ?? []) as Question[]
-  return all.filter((q: Question) => (q.topic as Topic | undefined)?.slug === topicSlug)
+  return (data ?? []) as Question[]
 }
 
 export async function getQuizzes(): Promise<Quiz[]> {

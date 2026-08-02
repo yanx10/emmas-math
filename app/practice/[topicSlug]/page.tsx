@@ -9,6 +9,13 @@ const ALL_TOPICS = [
   { slug: 'decimal-place-value', title: 'Decimal Place Value', emoji: '🌸' },
   { slug: 'decimal-operations', title: 'Decimal Operations', emoji: '🌺' },
   { slug: 'fractions-review', title: 'Fractions Review', emoji: '🌷' },
+  { slug: 'ratios-and-rates', title: 'Ratios & Rates', emoji: '🌻' },
+  { slug: 'percentages', title: 'Percentages', emoji: '💫' },
+  { slug: 'integers', title: 'Integers & Negative Numbers', emoji: '❄️' },
+  { slug: 'expressions-and-equations', title: 'Expressions & Equations', emoji: '🔢' },
+  { slug: 'geometry-area-volume', title: 'Geometry: Area & Volume', emoji: '📐' },
+  { slug: 'statistics', title: 'Statistics', emoji: '📊' },
+  { slug: 'coordinate-plane', title: 'Coordinate Plane', emoji: '🗺️' },
 ]
 
 export default async function PracticeTopicPage({ params }: { params: Promise<{ topicSlug: string }> }) {
