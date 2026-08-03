@@ -118,7 +118,7 @@ export default async function HomePage() {
       <div className={`rounded-3xl bg-gradient-to-br ${currentWeekInfo.gradient} p-6 text-white shadow-xl`}>
         <div className="flex items-start justify-between">
           <div>
-            <span className="text-xs font-black uppercase tracking-widest opacity-80">Week {currentWeekNum} · Today&apos;s Mission</span>
+            <span className="text-xs font-black uppercase tracking-widest opacity-80">Today&apos;s Mission</span>
             <h2 className="mt-1 text-2xl font-black">{currentWeekInfo.emoji} {currentWeekInfo.title}</h2>
             <p className="mt-1 opacity-80 text-sm">Let&apos;s crush some math today! 💪</p>
           </div>
@@ -162,7 +162,7 @@ export default async function HomePage() {
 
       {/* Week cards */}
       <div>
-        <h2 className="text-xl font-black text-stone-800 mb-4">Your Weeks 🌺</h2>
+        <h2 className="text-xl font-black text-stone-800 mb-4">Your Levels 🌺</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           {weekProgress.map(({ week, title, slug, lesson, emoji, gradient, progress: p, quiz }) => {
             const status = p?.status ?? 'not_started'
@@ -174,7 +174,7 @@ export default async function HomePage() {
                 {/* Color header */}
                 <div className={`bg-gradient-to-r ${gradient} p-4 text-white`}>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider opacity-80">Week {week}</span>
+                    <span className="text-xs font-black uppercase tracking-wider opacity-80">Level {week}</span>
                     <span className="text-2xl">{emoji}</span>
                   </div>
                   <h3 className="font-black text-lg mt-1 leading-tight">{title}</h3>

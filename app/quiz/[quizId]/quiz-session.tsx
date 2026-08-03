@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { saveQuizResult } from '@/app/actions'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -30,6 +31,7 @@ function extractQuestions(quiz: Quiz): Question[] {
 }
 
 export function QuizSession({ quiz }: { quiz: Quiz }) {
+  const router = useRouter()
   const questions = extractQuestions(quiz)
   const [phase, setPhase] = useState<Phase>('intro')
   const [index, setIndex] = useState(0)
@@ -73,6 +75,7 @@ export function QuizSession({ quiz }: { quiz: Quiz }) {
       quizResults.map((r) => ({ questionId: r.questionId, userAnswer: r.userAnswer, isCorrect: r.isCorrect }))
     )
 
+    router.refresh()
     setResults(quizResults)
     setPhase('results')
     setSubmitting(false)

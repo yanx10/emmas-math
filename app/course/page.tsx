@@ -49,7 +49,7 @@ export default async function CoursePage() {
     <div>
       <PageHeader
         title="Course Roadmap"
-        subtitle="3-week 5th grade review & middle school prep"
+        subtitle="5th grade review & middle school prep"
       />
 
       <div className="space-y-4">
@@ -64,7 +64,7 @@ export default async function CoursePage() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-full">
-                      Week {week}
+                      Level {week}
                     </span>
                     <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${statusColors[status]}`}>
                       {statusLabels[status]}

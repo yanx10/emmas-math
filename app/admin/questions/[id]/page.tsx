@@ -49,7 +49,7 @@ export default async function EditQuestionPage({ params }: { params: Promise<{ i
 
         <div>
           <label className="block text-sm font-medium text-stone-700 mb-1">Week Number</label>
-          <input type="number" name="week_number" min="1" max="3" defaultValue={question.week_number ?? ''} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
+          <input type="number" name="week_number" min="1" max="10" defaultValue={question.week_number ?? ''} className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400" />
         </div>
 
         <div>

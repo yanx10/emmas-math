@@ -84,10 +84,10 @@ export function PracticeSession({ questions, weekNumber, todaySecondsStart, othe
     setSaving(false)
   }
 
-  function handleNext() {
+  async function handleNext() {
     questionStartRef.current = Date.now()
     if (index + 1 >= questions.length) {
-      markPracticeCompleted(weekNumber)
+      await markPracticeCompleted(weekNumber)
       setDone(true)
     } else {
       setIndex((i) => i + 1)

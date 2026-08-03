@@ -139,7 +139,7 @@ export default async function ProgressPage() {
               {quizScores.map(({ week, score, timestamp }) => (
                 <div key={week}>
                   <div className="flex justify-between items-center text-xs mb-1">
-                    <span className="font-semibold text-stone-600">Week {week} — {WEEK_TITLES[week]}</span>
+                    <span className="font-semibold text-stone-600">Level {week} — {WEEK_TITLES[week]}</span>
                     <div className="flex items-center gap-3">
                       {timestamp && (
                         <span className="text-stone-400 flex items-center gap-1">
@@ -218,7 +218,7 @@ export default async function ProgressPage() {
         {/* Weekly Progress */}
         <div>
           <h2 className="text-lg font-black text-stone-800 mb-4 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-pink-500" /> Weekly Progress
+            <BookOpen className="h-5 w-5 text-pink-500" /> Level Progress
           </h2>
           <div className="space-y-3">
             {progress.map((p) => {
@@ -229,7 +229,7 @@ export default async function ProgressPage() {
                 <Card key={p.week_number} className="border-pink-100">
                   <div className="flex items-center justify-between mb-2">
                     <div>
-                      <span className="text-xs font-black text-pink-500">Week {p.week_number}</span>
+                      <span className="text-xs font-black text-pink-500">Level {p.week_number}</span>
                       <p className="font-bold text-stone-800">{WEEK_TITLES[p.week_number]}</p>
                     </div>
                     {p.quiz_score != null && (
