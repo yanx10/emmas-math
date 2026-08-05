@@ -32,8 +32,8 @@ export default async function QuizListPage() {
           return (
             <Card key={quiz.id}>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-full">
-                  Week {quiz.week_number}
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${quiz.week_number === 0 ? 'text-amber-700 bg-amber-50' : 'text-pink-600 bg-pink-50'}`}>
+                  {quiz.week_number === 0 ? '🏆 Test Prep' : `Level ${quiz.week_number}`}
                 </span>
                 {p?.quiz_completed && (
                   <span className="flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">

@@ -103,36 +103,38 @@ export async function saveQuizResult(
     }))
   )
 
-  const { data: existing } = await supabase
-    .from('weekly_progress')
-    .select('*')
-    .eq('week_number', weekNumber)
-    .single()
+  if (weekNumber > 0) {
+    const { data: existing } = await supabase
+      .from('weekly_progress')
+      .select('*')
+      .eq('week_number', weekNumber)
+      .single()
 
-  const lesson_completed = existing?.lesson_completed ?? false
-  const practice_completed = existing?.practice_completed ?? false
-  const quiz_completed = true
+    const lesson_completed = existing?.lesson_completed ?? false
+    const practice_completed = existing?.practice_completed ?? false
+    const quiz_completed = true
 
-  const completion_percentage =
-    (lesson_completed ? 33 : 0) + (practice_completed ? 34 : 0) + (quiz_completed ? 33 : 0)
-  const status =
-    lesson_completed && practice_completed && quiz_completed ? 'completed' : 'in_progress'
+    const completion_percentage =
+      (lesson_completed ? 33 : 0) + (practice_completed ? 34 : 0) + (quiz_completed ? 33 : 0)
+    const status =
+      lesson_completed && practice_completed && quiz_completed ? 'completed' : 'in_progress'
 
-  await supabase
-    .from('weekly_progress')
-    .upsert(
-      {
-        week_number: weekNumber,
-        lesson_completed,
-        practice_completed,
-        quiz_completed,
-        quiz_score: score,
-        completion_percentage,
-        status,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: 'week_number' }
-    )
+    await supabase
+      .from('weekly_progress')
+      .upsert(
+        {
+          week_number: weekNumber,
+          lesson_completed,
+          practice_completed,
+          quiz_completed,
+          quiz_score: score,
+          completion_percentage,
+          status,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'week_number' }
+      )
+  }
 
   revalidatePath('/')
   revalidatePath('/course')

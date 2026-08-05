@@ -25,7 +25,7 @@ export default async function QuizPage({ params }: { params: Promise<{ quizId: s
     <div>
       <PageHeader
         title={quiz.title}
-        subtitle={topic?.title ? `Week ${quiz.week_number} · ${topic.title}` : `Week ${quiz.week_number}`}
+        subtitle={quiz.week_number === 0 ? 'MDTP-style · No calculator needed' : topic?.title ? `Level ${quiz.week_number} · ${topic.title}` : `Level ${quiz.week_number}`}
       />
       <QuizSession quiz={quiz} />
     </div>

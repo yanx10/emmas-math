@@ -16,6 +16,7 @@ const ALL_TOPICS = [
   { slug: 'geometry-area-volume', title: 'Geometry: Area & Volume', emoji: '📐' },
   { slug: 'statistics', title: 'Statistics', emoji: '📊' },
   { slug: 'coordinate-plane', title: 'Coordinate Plane', emoji: '🗺️' },
+  { slug: 'patterns-and-sequences', title: 'Patterns & Sequences', emoji: '🔁' },
 ]
 
 export default async function PracticeTopicPage({ params }: { params: Promise<{ topicSlug: string }> }) {

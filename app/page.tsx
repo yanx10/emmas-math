@@ -22,6 +22,7 @@ const WEEK_META = [
   { week: 8, title: 'Geometry: Area & Volume', slug: 'geometry-area-volume', lesson: 'geometry-area-volume-lesson', emoji: '📐', gradient: 'from-violet-400 to-fuchsia-400' },
   { week: 9, title: 'Statistics', slug: 'statistics', lesson: 'statistics-lesson', emoji: '📊', gradient: 'from-fuchsia-400 to-rose-400' },
   { week: 10, title: 'Coordinate Plane', slug: 'coordinate-plane', lesson: 'coordinate-plane-lesson', emoji: '🗺️', gradient: 'from-rose-400 to-orange-400' },
+  { week: 11, title: 'Patterns & Sequences', slug: 'patterns-and-sequences', lesson: 'patterns-and-sequences-lesson', emoji: '🔁', gradient: 'from-orange-400 to-amber-400' },
 ]
 
 const statusConfig: Record<string, { label: string; color: string }> = {

@@ -11,6 +11,14 @@ const WEEK_TITLES: Record<number, string> = {
   1: 'Decimal Place Value',
   2: 'Decimal Operations',
   3: 'Fractions Review',
+  4: 'Ratios & Rates',
+  5: 'Percentages',
+  6: 'Integers & Negative Numbers',
+  7: 'Expressions & Equations',
+  8: 'Geometry: Area & Volume',
+  9: 'Statistics',
+  10: 'Coordinate Plane',
+  11: 'Patterns & Sequences',
 }
 
 function formatDateTime(iso: string) {
